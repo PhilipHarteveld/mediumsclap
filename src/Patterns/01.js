@@ -1,12 +1,8 @@
 import React, { Component, useState } from "react";
 import mojs from "mo-js";
-// import { generateRandomNumber } from "../utils/generateRandomNumber";
+
 import styles from "./index.module.css";
 
-/** ====================================
- *          🔰HOC
-Higher Order Component for Animation
-==================================== **/
 const withClapAnimation = (WrappedComponent) => {
   class WithClapAnimation extends Component {
     animationTimeline = new mojs.Timeline();
@@ -115,9 +111,6 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }
 
-/** ====================================
- *      🔰 MediumClap
-==================================== **/
 const initialState = {
   count: 0,
   countTotal: 500,
@@ -130,7 +123,6 @@ const MediumClap = ({ animationTimeline }) => {
   const { count, countTotal, isClicked } = clapState;
 
   const handleClapClick = () => {
-    // 👉 prop from HOC
     animationTimeline.replay();
 
     setClapState({
@@ -148,11 +140,6 @@ const MediumClap = ({ animationTimeline }) => {
     </button>
   );
 };
-
-/** ====================================
- *      🔰SubComponents
-Smaller Component used by <MediumClap />
-==================================== **/
 
 const ClapIcon = ({ isClicked }) => {
   return (
@@ -183,12 +170,6 @@ const CountTotal = ({ countTotal }) => {
     </span>
   );
 };
-
-/** ====================================
-    *        🔰USAGE
-    Below's how a potential user
-    may consume the component API
-==================================== **/
 
 const Usage = () => {
   const AnimatedMediumClap = withClapAnimation(MediumClap);
